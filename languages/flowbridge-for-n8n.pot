@@ -1,0 +1,138 @@
+# Copyright (C) 2026 Equal Pixels
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: FlowBridge (n8n Edition) 1.0.0\n"
+"Report-Msgid-Bugs-To: https://equalpixels.com\n"
+"POT-Creation-Date: 2026-03-07T00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "FlowBridge Settings"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "FlowBridge"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Settings"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Saving..."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Saved!"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Error saving settings."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Loading fields..."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "No fields found."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Sending..."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Test webhook sent successfully!"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Test webhook failed."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-admin.php
+msgid "Are you sure you want to reset this configuration?"
+msgstr ""
+
+#: admin/class-flowbridge-n8n-settings.php
+msgid "Settings saved."
+msgstr ""
+
+#: admin/class-flowbridge-n8n-settings.php
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Webhook Configuration"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Configure the n8n webhook URL and global settings for FlowBridge."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Enable Webhooks"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Master switch — when disabled, no webhooks will be sent."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Webhook URL"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "The n8n webhook URL to receive events."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Secret Key"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Optional secret for webhook authentication. Sent as X-FlowBridge-Secret header."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Timeout (seconds)"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "HTTP request timeout in seconds (1-120)."
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Save Settings"
+msgstr ""
+
+#: admin/partials/tab-webhook.php
+msgid "Test Webhook"
+msgstr ""
+
+#: admin/partials/tab-posts.php
+msgid "Post Types"
+msgstr ""
+
+#: admin/partials/tab-posts.php
+msgid "Enable webhooks for specific post types and configure which fields to send."
+msgstr ""
+
+#: admin/partials/tab-posts.php
+msgid "Configure"
+msgstr ""
+
+#: includes/class-flowbridge-n8n-webhook-sender.php
+msgid "No webhook URL configured."
+msgstr ""
+
+#: includes/class-flowbridge-n8n-webhook-sender.php
+msgid "FlowBridge test webhook — connection successful!"
+msgstr ""

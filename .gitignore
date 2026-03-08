@@ -1,0 +1,23 @@
+# Claude
+.claude/
+CLAUDE.md
+
+# Docs (internal)
+docs/
+
+# Dependencies
+node_modules/
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build
+*.zip

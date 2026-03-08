@@ -1,0 +1,1449 @@
+/**
+ * FlowBridge Admin Styles
+ *
+ * Premium soft-UI design system for FlowBridge (n8n Edition).
+ *
+ * @since 1.1.0
+ * @package FlowBridge_N8N
+ */
+
+/* ==========================================================================
+   Design Tokens (CSS Custom Properties)
+   ========================================================================== */
+
+.flowbridge-wrap {
+	/* Primary palette */
+	--fb-primary: #4f46e5;
+	--fb-primary-light: #6366f1;
+	--fb-primary-lighter: #e0e7ff;
+	--fb-primary-dark: #3730a3;
+	--fb-primary-bg: #eef2ff;
+
+	/* Accent / success / warning / error */
+	--fb-success: #059669;
+	--fb-success-bg: #ecfdf5;
+	--fb-warning: #d97706;
+	--fb-warning-bg: #fffbeb;
+	--fb-error: #dc2626;
+	--fb-error-bg: #fef2f2;
+
+	/* Neutrals */
+	--fb-gray-50: #f9fafb;
+	--fb-gray-100: #f3f4f6;
+	--fb-gray-200: #e5e7eb;
+	--fb-gray-300: #d1d5db;
+	--fb-gray-400: #9ca3af;
+	--fb-gray-500: #6b7280;
+	--fb-gray-600: #4b5563;
+	--fb-gray-700: #374151;
+	--fb-gray-800: #1f2937;
+	--fb-gray-900: #111827;
+
+	/* Surfaces */
+	--fb-surface: #ffffff;
+	--fb-surface-raised: #ffffff;
+	--fb-surface-overlay: rgba(0, 0, 0, 0.45);
+	--fb-border: #e5e7eb;
+	--fb-border-light: #f3f4f6;
+
+	/* Shadows */
+	--fb-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--fb-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+	--fb-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+	--fb-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+	--fb-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+	--fb-shadow-focus: 0 0 0 3px rgba(79, 70, 229, 0.2);
+
+	/* Radii */
+	--fb-radius-sm: 6px;
+	--fb-radius-md: 8px;
+	--fb-radius-lg: 12px;
+	--fb-radius-xl: 16px;
+	--fb-radius-full: 9999px;
+
+	/* Transitions */
+	--fb-transition-fast: 0.15s ease;
+	--fb-transition-base: 0.2s ease;
+	--fb-transition-slow: 0.3s ease;
+
+	/* Typography */
+	--fb-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+
+/* ==========================================================================
+   Page Header / Wrapper
+   ========================================================================== */
+
+.flowbridge-wrap {
+	max-width: 1280px;
+	font-family: var(--fb-font-sans);
+}
+
+.flowbridge-wrap > h1 {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--fb-gray-900);
+	letter-spacing: -0.025em;
+	margin-bottom: 4px;
+	padding-bottom: 20px;
+	border-bottom: 3px solid var(--fb-primary);
+	display: inline-block;
+}
+
+
+/* ==========================================================================
+   Layout: Vertical Tabs
+   ========================================================================== */
+
+.flowbridge-layout {
+	display: flex;
+	gap: 0;
+	margin-top: 24px;
+	max-width: 1200px;
+}
+
+.flowbridge-tabs-nav {
+	flex: 0 0 220px;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	padding-top: 4px;
+}
+
+.flowbridge-tab-link {
+	display: flex;
+	align-items: center;
+	padding: 13px 20px;
+	background: var(--fb-gray-50);
+	color: var(--fb-gray-600);
+	text-decoration: none;
+	border: 1px solid var(--fb-border);
+	border-right: none;
+	font-size: 13.5px;
+	font-weight: 500;
+	transition: all var(--fb-transition-base);
+	position: relative;
+	letter-spacing: 0.01em;
+}
+
+.flowbridge-tab-link:first-child {
+	border-radius: var(--fb-radius-lg) 0 0 0;
+}
+
+.flowbridge-tab-link:last-child {
+	border-radius: 0 0 0 var(--fb-radius-lg);
+}
+
+.flowbridge-tab-link + .flowbridge-tab-link {
+	border-top: none;
+}
+
+.flowbridge-tab-link:hover {
+	background: var(--fb-surface);
+	color: var(--fb-primary);
+}
+
+.flowbridge-tab-link:focus {
+	outline: none;
+	box-shadow: var(--fb-shadow-focus);
+	z-index: 2;
+}
+
+.flowbridge-tab-link.active {
+	background: var(--fb-surface);
+	color: var(--fb-primary);
+	font-weight: 600;
+	border-right: 1px solid var(--fb-surface);
+	margin-right: -1px;
+	position: relative;
+	z-index: 1;
+	box-shadow: var(--fb-shadow-sm);
+}
+
+.flowbridge-tab-link.active::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 3px;
+	background: var(--fb-primary);
+	border-radius: 0 2px 2px 0;
+}
+
+.flowbridge-tab-content {
+	flex: 1;
+	min-width: 0;
+}
+
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.flowbridge-card {
+	background: var(--fb-surface);
+	border: 1px solid var(--fb-border);
+	border-radius: 0 var(--fb-radius-lg) var(--fb-radius-lg) 0;
+	padding: 32px;
+	box-shadow: var(--fb-shadow-sm);
+	position: relative;
+}
+
+.flowbridge-card h2 {
+	margin-top: 0;
+	margin-bottom: 6px;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--fb-gray-900);
+	letter-spacing: -0.02em;
+}
+
+.flowbridge-description {
+	color: var(--fb-gray-500);
+	margin-bottom: 24px;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   Form Table Overrides (Webhook tab)
+   ========================================================================== */
+
+.flowbridge-form-table th {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: 600;
+	color: var(--fb-gray-700);
+	font-size: 13.5px;
+	vertical-align: top;
+}
+
+.flowbridge-form-table td {
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.flowbridge-form-table .description {
+	color: var(--fb-gray-400);
+	font-size: 12.5px;
+	margin-top: 6px;
+}
+
+.flowbridge-form-table input[type="url"],
+.flowbridge-form-table input[type="text"],
+.flowbridge-form-table input[type="number"] {
+	border: 1.5px solid var(--fb-gray-300);
+	border-radius: var(--fb-radius-sm);
+	padding: 8px 12px;
+	font-size: 13.5px;
+	color: var(--fb-gray-800);
+	transition: border-color var(--fb-transition-fast), box-shadow var(--fb-transition-fast);
+	background: var(--fb-surface);
+}
+
+.flowbridge-form-table input[type="url"]:focus,
+.flowbridge-form-table input[type="text"]:focus,
+.flowbridge-form-table input[type="number"]:focus {
+	border-color: var(--fb-primary);
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+
+/* ==========================================================================
+   Toggle Switch
+   ========================================================================== */
+
+.flowbridge-toggle {
+	position: relative;
+	display: inline-block;
+	width: 44px;
+	height: 24px;
+	vertical-align: middle;
+	flex-shrink: 0;
+}
+
+.flowbridge-toggle input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+.flowbridge-toggle-slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--fb-gray-300);
+	border-radius: var(--fb-radius-full);
+	transition: background-color var(--fb-transition-base), box-shadow var(--fb-transition-base);
+}
+
+.flowbridge-toggle-slider::before {
+	content: "";
+	position: absolute;
+	height: 18px;
+	width: 18px;
+	left: 3px;
+	bottom: 3px;
+	background-color: var(--fb-surface);
+	border-radius: 50%;
+	transition: transform var(--fb-transition-base);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.flowbridge-toggle:hover .flowbridge-toggle-slider {
+	background-color: var(--fb-gray-400);
+}
+
+.flowbridge-toggle input:focus + .flowbridge-toggle-slider {
+	box-shadow: var(--fb-shadow-focus);
+}
+
+.flowbridge-toggle input:checked + .flowbridge-toggle-slider {
+	background-color: var(--fb-primary);
+}
+
+.flowbridge-toggle input:checked:hover + .flowbridge-toggle-slider {
+	background-color: var(--fb-primary-light);
+}
+
+.flowbridge-toggle input:checked + .flowbridge-toggle-slider::before {
+	transform: translateX(20px);
+}
+
+
+/* ==========================================================================
+   Entity Rows
+   ========================================================================== */
+
+.flowbridge-entity-row {
+	border: 1.5px solid var(--fb-border);
+	border-radius: var(--fb-radius-md);
+	margin-bottom: 12px;
+	background: var(--fb-surface);
+	transition: border-color var(--fb-transition-fast), box-shadow var(--fb-transition-fast);
+	overflow: hidden;
+}
+
+.flowbridge-entity-row:hover {
+	border-color: var(--fb-gray-300);
+	box-shadow: var(--fb-shadow-sm);
+}
+
+.flowbridge-entity-row:last-child {
+	margin-bottom: 0;
+}
+
+.flowbridge-entity-header {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 18px;
+}
+
+.flowbridge-entity-name {
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--fb-gray-800);
+	letter-spacing: -0.01em;
+}
+
+.flowbridge-entity-slug {
+	font-size: 11px;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+	color: var(--fb-primary-dark);
+	background: var(--fb-primary-bg);
+	padding: 3px 8px;
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+	border: 1px solid var(--fb-primary-lighter);
+	letter-spacing: 0.01em;
+}
+
+.flowbridge-configure-btn {
+	margin-left: auto !important;
+}
+
+/* Restyle the Configure button (it has WP .button.button-small) */
+.flowbridge-entity-header .button.button-small.flowbridge-configure-btn {
+	background: var(--fb-gray-50);
+	border: 1.5px solid var(--fb-gray-300);
+	border-radius: var(--fb-radius-sm);
+	color: var(--fb-gray-700);
+	font-weight: 500;
+	font-size: 12.5px;
+	padding: 4px 14px;
+	cursor: pointer;
+	transition: all var(--fb-transition-fast);
+	text-decoration: none;
+	line-height: 1.6;
+	height: auto;
+}
+
+.flowbridge-entity-header .button.button-small.flowbridge-configure-btn:hover {
+	background: var(--fb-primary);
+	border-color: var(--fb-primary);
+	color: #ffffff;
+	box-shadow: var(--fb-shadow-xs);
+}
+
+.flowbridge-entity-header .button.button-small.flowbridge-configure-btn:focus {
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+
+/* ==========================================================================
+   Collapsible Sections (config summary under entity rows)
+   ========================================================================== */
+
+.flowbridge-collapsible {
+	border-top: 1px solid var(--fb-border-light);
+	background: var(--fb-gray-50);
+}
+
+.flowbridge-collapsible-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 10px 18px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 12.5px;
+	color: var(--fb-gray-500);
+	text-align: left;
+	font-weight: 500;
+	transition: color var(--fb-transition-fast);
+}
+
+.flowbridge-collapsible-toggle:hover {
+	color: var(--fb-primary);
+}
+
+.flowbridge-collapsible-toggle .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	transition: transform var(--fb-transition-base);
+	color: var(--fb-gray-400);
+}
+
+.flowbridge-collapsible-toggle.open .dashicons {
+	transform: rotate(180deg);
+}
+
+.flowbridge-collapsible-content {
+	padding: 0 18px 14px;
+}
+
+.flowbridge-collapsible-content p {
+	font-size: 13px;
+	color: var(--fb-gray-600);
+	margin-bottom: 10px;
+}
+
+
+/* ==========================================================================
+   Mini Table (config summary)
+   ========================================================================== */
+
+.flowbridge-mini-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: 12px;
+	border: 1px solid var(--fb-border);
+	border-radius: var(--fb-radius-sm);
+	overflow: hidden;
+}
+
+.flowbridge-mini-table th,
+.flowbridge-mini-table td {
+	padding: 6px 10px;
+	text-align: left;
+}
+
+.flowbridge-mini-table th {
+	font-weight: 600;
+	color: var(--fb-gray-700);
+	background: var(--fb-gray-100);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	border-bottom: 1px solid var(--fb-border);
+}
+
+.flowbridge-mini-table td {
+	border-bottom: 1px solid var(--fb-border-light);
+	color: var(--fb-gray-600);
+}
+
+.flowbridge-mini-table tr:last-child td {
+	border-bottom: none;
+}
+
+.flowbridge-mini-table tr:hover td {
+	background: var(--fb-primary-bg);
+}
+
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.flowbridge-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100000;
+	animation: flowbridge-modal-fadein 0.2s ease;
+}
+
+@keyframes flowbridge-modal-fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes flowbridge-modal-slidein {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -48%);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.flowbridge-modal-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--fb-surface-overlay);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+
+.flowbridge-modal-card {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--fb-surface);
+	border-radius: var(--fb-radius-xl);
+	box-shadow: var(--fb-shadow-xl);
+	width: 90%;
+	max-width: 920px;
+	max-height: 85vh;
+	display: flex;
+	flex-direction: column;
+	animation: flowbridge-modal-slidein 0.25s ease;
+	border: 1px solid var(--fb-border);
+}
+
+.flowbridge-modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 28px;
+	border-bottom: 1px solid var(--fb-border);
+	background: var(--fb-gray-50);
+	border-radius: var(--fb-radius-xl) var(--fb-radius-xl) 0 0;
+}
+
+.flowbridge-modal-header h3 {
+	margin: 0;
+	font-size: 17px;
+	font-weight: 700;
+	color: var(--fb-gray-900);
+	letter-spacing: -0.02em;
+}
+
+.flowbridge-modal-entity-label {
+	color: var(--fb-primary);
+}
+
+.flowbridge-modal-close {
+	background: none;
+	border: none;
+	font-size: 22px;
+	cursor: pointer;
+	color: var(--fb-gray-400);
+	padding: 4px;
+	line-height: 1;
+	border-radius: var(--fb-radius-sm);
+	transition: all var(--fb-transition-fast);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+}
+
+.flowbridge-modal-close:hover {
+	background: var(--fb-error-bg);
+	color: var(--fb-error);
+}
+
+.flowbridge-modal-body {
+	padding: 28px;
+	overflow-y: auto;
+	flex: 1;
+}
+
+.flowbridge-modal-section {
+	margin-bottom: 28px;
+}
+
+.flowbridge-modal-section:last-child {
+	margin-bottom: 0;
+}
+
+.flowbridge-modal-section h4 {
+	margin: 0 0 12px;
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--fb-gray-800);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.flowbridge-modal-section h4::before {
+	content: "";
+	width: 3px;
+	height: 16px;
+	background: var(--fb-primary);
+	border-radius: 2px;
+	display: inline-block;
+}
+
+.flowbridge-modal-section .description {
+	color: var(--fb-gray-400);
+	font-size: 13px;
+	margin-bottom: 12px;
+}
+
+.flowbridge-modal-footer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 18px 28px;
+	border-top: 1px solid var(--fb-border);
+	background: var(--fb-gray-50);
+	border-radius: 0 0 var(--fb-radius-xl) var(--fb-radius-xl);
+}
+
+/* Restyle the Save Configuration button */
+.flowbridge-modal-footer .button.button-primary.flowbridge-save-config-btn {
+	background: var(--fb-primary);
+	border-color: var(--fb-primary);
+	border-radius: var(--fb-radius-sm);
+	font-weight: 600;
+	font-size: 13.5px;
+	padding: 6px 20px;
+	height: auto;
+	line-height: 1.6;
+	transition: all var(--fb-transition-fast);
+	text-shadow: none;
+	box-shadow: none;
+}
+
+.flowbridge-modal-footer .button.button-primary.flowbridge-save-config-btn:hover {
+	background: var(--fb-primary-dark);
+	border-color: var(--fb-primary-dark);
+	box-shadow: var(--fb-shadow-sm);
+}
+
+.flowbridge-modal-footer .button.button-primary.flowbridge-save-config-btn:focus {
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+/* Cancel button */
+.flowbridge-modal-footer .button.flowbridge-modal-cancel {
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+	font-size: 13.5px;
+	padding: 6px 16px;
+	height: auto;
+	line-height: 1.6;
+	border: 1.5px solid var(--fb-gray-300);
+	color: var(--fb-gray-600);
+	background: var(--fb-surface);
+	transition: all var(--fb-transition-fast);
+}
+
+.flowbridge-modal-footer .button.flowbridge-modal-cancel:hover {
+	border-color: var(--fb-gray-400);
+	color: var(--fb-gray-800);
+	background: var(--fb-gray-50);
+}
+
+.flowbridge-modal-status {
+	margin-left: auto;
+	font-size: 13px;
+	color: var(--fb-gray-500);
+	font-weight: 500;
+}
+
+.flowbridge-modal-status.success {
+	color: var(--fb-success);
+}
+
+.flowbridge-modal-status.error {
+	color: var(--fb-error);
+}
+
+
+/* ==========================================================================
+   Events Checkboxes
+   ========================================================================== */
+
+.flowbridge-events-checkboxes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.flowbridge-events-checkboxes label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	color: var(--fb-gray-700);
+	padding: 8px 14px;
+	background: var(--fb-gray-50);
+	border: 1.5px solid var(--fb-border);
+	border-radius: var(--fb-radius-sm);
+	cursor: pointer;
+	transition: all var(--fb-transition-fast);
+	font-weight: 500;
+	user-select: none;
+}
+
+.flowbridge-events-checkboxes label:hover {
+	border-color: var(--fb-primary-lighter);
+	background: var(--fb-primary-bg);
+	color: var(--fb-primary);
+}
+
+.flowbridge-events-checkboxes label:has(input:checked) {
+	border-color: var(--fb-primary);
+	background: var(--fb-primary-bg);
+	color: var(--fb-primary);
+}
+
+.flowbridge-events-checkboxes input[type="checkbox"] {
+	accent-color: var(--fb-primary);
+}
+
+
+/* ==========================================================================
+   Fields Table
+   ========================================================================== */
+
+.flowbridge-fields-table-wrap {
+	margin-top: 14px;
+	border: 1px solid var(--fb-border);
+	border-radius: var(--fb-radius-md);
+	background: var(--fb-surface);
+	overflow: clip;
+}
+
+.flowbridge-fields-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: 13px;
+}
+
+.flowbridge-fields-table th {
+	position: sticky;
+	top: 0;
+	background: var(--fb-gray-100);
+	padding: 10px 12px;
+	text-align: left;
+	font-weight: 600;
+	border-bottom: none;
+	box-shadow: inset 0 -2px 0 var(--fb-border), 0 -30px 0 0 var(--fb-surface);
+	font-size: 11.5px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--fb-gray-600);
+	z-index: 1;
+}
+
+.flowbridge-fields-table td {
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--fb-border-light);
+	color: var(--fb-gray-700);
+}
+
+.flowbridge-fields-table tr:last-child td {
+	border-bottom: none;
+}
+
+.flowbridge-fields-table tr:hover td {
+	background: var(--fb-primary-bg);
+}
+
+.flowbridge-fields-table .flowbridge-col-check {
+	width: 36px;
+	text-align: center;
+}
+
+.flowbridge-fields-table input[type="checkbox"] {
+	accent-color: var(--fb-primary);
+}
+
+.flowbridge-fields-table input[type="text"],
+.flowbridge-fields-table select {
+	width: 100%;
+	min-width: 80px;
+	border: 1.5px solid var(--fb-gray-300);
+	border-radius: var(--fb-radius-sm);
+	padding: 5px 8px;
+	font-size: 12.5px;
+	color: var(--fb-gray-700);
+	transition: border-color var(--fb-transition-fast), box-shadow var(--fb-transition-fast);
+}
+
+.flowbridge-fields-table input[type="text"]:focus,
+.flowbridge-fields-table select:focus {
+	border-color: var(--fb-primary);
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+.flowbridge-fields-table .flowbridge-field-meta-badge {
+	display: inline-block;
+	font-size: 10px;
+	background: linear-gradient(135deg, #f59e0b, #d97706);
+	color: #ffffff;
+	padding: 2px 7px;
+	border-radius: var(--fb-radius-full);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.flowbridge-sample-value {
+	max-width: 180px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 11.5px;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+	color: var(--fb-gray-500);
+}
+
+.flowbridge-sample-empty {
+	color: var(--fb-gray-400);
+}
+
+
+/* ==========================================================================
+   Preview JSON Output
+   ========================================================================== */
+
+.flowbridge-preview-json {
+	background: #1e1e2e;
+	color: #cdd6f4;
+	padding: 16px;
+	border-radius: var(--fb-radius-md);
+	font-size: 13px;
+	line-height: 1.5;
+	max-height: 400px;
+	overflow: auto;
+	white-space: pre;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+	margin: 0;
+}
+
+.flowbridge-modal-footer .button.flowbridge-preview-output-btn,
+.flowbridge-modal-footer .button.flowbridge-send-test-event-btn {
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+	font-size: 13.5px;
+	padding: 6px 16px;
+	height: auto;
+	line-height: 1.6;
+	border: 1.5px solid var(--fb-primary);
+	color: var(--fb-primary);
+	background: var(--fb-primary-bg);
+	transition: all var(--fb-transition-fast);
+}
+
+.flowbridge-modal-footer .button.flowbridge-preview-output-btn:hover,
+.flowbridge-modal-footer .button.flowbridge-send-test-event-btn:hover {
+	background: var(--fb-primary);
+	color: #ffffff;
+}
+
+.flowbridge-modal-footer .button.flowbridge-preview-output-btn:focus,
+.flowbridge-modal-footer .button.flowbridge-send-test-event-btn:focus {
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+.flowbridge-fields-empty td {
+	text-align: center;
+	color: var(--fb-gray-400);
+	padding: 32px 20px;
+	font-size: 13.5px;
+}
+
+
+/* ==========================================================================
+   Sample Selector
+   ========================================================================== */
+
+.flowbridge-sample-selector {
+	min-width: 320px;
+	margin-right: 10px;
+	border: 1.5px solid var(--fb-gray-300);
+	border-radius: var(--fb-radius-sm);
+	padding: 7px 10px;
+	font-size: 13px;
+	color: var(--fb-gray-700);
+	background: var(--fb-surface);
+	transition: border-color var(--fb-transition-fast), box-shadow var(--fb-transition-fast);
+}
+
+.flowbridge-sample-selector:focus {
+	border-color: var(--fb-primary);
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+/* Load Fields button */
+.flowbridge-modal-section .button.button-small.flowbridge-load-fields-btn,
+.flowbridge-modal-section .button.button-small.flowbridge-load-cf7-fields-btn {
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+	font-size: 12.5px;
+	padding: 5px 14px;
+	height: auto;
+	line-height: 1.5;
+	border: 1.5px solid var(--fb-primary);
+	color: var(--fb-primary);
+	background: var(--fb-primary-bg);
+	transition: all var(--fb-transition-fast);
+}
+
+.flowbridge-modal-section .button.button-small.flowbridge-load-fields-btn:hover,
+.flowbridge-modal-section .button.button-small.flowbridge-load-cf7-fields-btn:hover {
+	background: var(--fb-primary);
+	color: #ffffff;
+}
+
+
+/* ==========================================================================
+   WP Default Types Toggle
+   ========================================================================== */
+
+.flowbridge-toggle-wp-defaults-btn {
+	display: inline-block;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	padding: 0;
+	background: none;
+	border: none;
+	color: var(--fb-gray-500);
+	font-size: 12.5px;
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	transition: color var(--fb-transition-fast);
+}
+
+.flowbridge-toggle-wp-defaults-btn:hover {
+	color: var(--fb-primary);
+}
+
+.flowbridge-wp-default-types {
+	margin-top: 4px;
+}
+
+.flowbridge-wp-default-types .flowbridge-entity-row {
+	opacity: 0.75;
+}
+
+.flowbridge-wp-default-types .flowbridge-entity-row:hover {
+	opacity: 1;
+}
+
+
+/* ==========================================================================
+   Inline Notices
+   ========================================================================== */
+
+.flowbridge-inline-notice {
+	display: inline-block;
+	margin-left: 12px;
+	padding: 5px 12px;
+	font-size: 13px;
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+}
+
+.flowbridge-inline-notice.success {
+	background: var(--fb-success-bg);
+	color: var(--fb-success);
+}
+
+.flowbridge-inline-notice.error {
+	background: var(--fb-error-bg);
+	color: var(--fb-error);
+}
+
+
+/* ==========================================================================
+   Notice Styles
+   ========================================================================== */
+
+.flowbridge-notice {
+	padding: 14px 18px;
+	border-radius: var(--fb-radius-md);
+	border-left: 4px solid;
+	font-size: 13.5px;
+}
+
+.flowbridge-notice-info {
+	background: var(--fb-primary-bg);
+	border-color: var(--fb-primary);
+	color: var(--fb-gray-700);
+}
+
+.flowbridge-notice p {
+	margin: 0;
+}
+
+.flowbridge-empty {
+	color: var(--fb-gray-400);
+	font-style: italic;
+	font-size: 14px;
+	padding: 20px 0;
+}
+
+
+/* ==========================================================================
+   Loading Spinner
+   ========================================================================== */
+
+.flowbridge-spinner {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 2px solid var(--fb-gray-200);
+	border-top-color: var(--fb-primary);
+	border-radius: 50%;
+	animation: flowbridge-spin 0.6s linear infinite;
+	vertical-align: middle;
+	margin-right: 6px;
+}
+
+@keyframes flowbridge-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+
+/* ==========================================================================
+   WordPress Button Overrides (scoped to .flowbridge-wrap)
+   ========================================================================== */
+
+/* Primary button (Save Settings) */
+.flowbridge-wrap .submit .button-primary,
+.flowbridge-wrap p.submit .button-primary {
+	background: var(--fb-primary);
+	border-color: var(--fb-primary);
+	border-radius: var(--fb-radius-sm);
+	font-weight: 600;
+	font-size: 13.5px;
+	padding: 6px 20px;
+	height: auto;
+	line-height: 1.6;
+	transition: all var(--fb-transition-fast);
+	text-shadow: none;
+	box-shadow: none;
+}
+
+.flowbridge-wrap .submit .button-primary:hover,
+.flowbridge-wrap p.submit .button-primary:hover {
+	background: var(--fb-primary-dark);
+	border-color: var(--fb-primary-dark);
+	box-shadow: var(--fb-shadow-sm);
+}
+
+.flowbridge-wrap .submit .button-primary:focus,
+.flowbridge-wrap p.submit .button-primary:focus {
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+/* Secondary button (Test Webhook) */
+.flowbridge-wrap .button-secondary,
+.flowbridge-wrap .button.button-secondary {
+	border-radius: var(--fb-radius-sm);
+	font-weight: 500;
+	font-size: 13.5px;
+	padding: 6px 16px;
+	height: auto;
+	line-height: 1.6;
+	border: 1.5px solid var(--fb-gray-300);
+	color: var(--fb-gray-600);
+	background: var(--fb-surface);
+	transition: all var(--fb-transition-fast);
+}
+
+.flowbridge-wrap .button-secondary:hover,
+.flowbridge-wrap .button.button-secondary:hover {
+	border-color: var(--fb-gray-400);
+	color: var(--fb-gray-800);
+	background: var(--fb-gray-50);
+}
+
+
+/* ==========================================================================
+   Logs Tab
+   ========================================================================== */
+
+.flowbridge-logs-filter-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.flowbridge-logs-filter-select,
+.flowbridge-logs-filter-input {
+	border: 1.5px solid var(--fb-gray-300);
+	border-radius: var(--fb-radius-sm);
+	padding: 7px 12px;
+	font-size: 13px;
+	color: var(--fb-gray-700);
+	background: var(--fb-surface);
+	transition: border-color var(--fb-transition-fast), box-shadow var(--fb-transition-fast);
+}
+
+.flowbridge-logs-filter-select:focus,
+.flowbridge-logs-filter-input:focus {
+	border-color: var(--fb-primary);
+	box-shadow: var(--fb-shadow-focus);
+	outline: none;
+}
+
+.flowbridge-logs-filter-input {
+	min-width: 140px;
+}
+
+.flowbridge-logs-clear-btn {
+	margin-left: auto !important;
+	color: var(--fb-error) !important;
+	border-color: var(--fb-error) !important;
+}
+
+.flowbridge-logs-clear-btn:hover {
+	background: var(--fb-error-bg) !important;
+}
+
+.flowbridge-logs-table-wrap {
+	border: 1px solid var(--fb-border);
+	border-radius: var(--fb-radius-md);
+	overflow: auto;
+	max-height: 600px;
+}
+
+.flowbridge-logs-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+.flowbridge-logs-table th {
+	position: sticky;
+	top: 0;
+	background: var(--fb-gray-100);
+	padding: 10px 12px;
+	text-align: left;
+	font-weight: 600;
+	border-bottom: 2px solid var(--fb-border);
+	font-size: 11.5px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--fb-gray-600);
+	z-index: 1;
+	white-space: nowrap;
+}
+
+.flowbridge-logs-table td {
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--fb-border-light);
+	color: var(--fb-gray-700);
+}
+
+.flowbridge-logs-table tr:last-child td {
+	border-bottom: none;
+}
+
+.flowbridge-logs-table tr:hover td {
+	background: var(--fb-primary-bg);
+}
+
+.flowbridge-logs-empty {
+	text-align: center;
+	color: var(--fb-gray-400);
+	padding: 32px 20px !important;
+	font-size: 13.5px;
+}
+
+.flowbridge-logs-col-status {
+	width: 90px;
+}
+
+.flowbridge-log-badge {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 3px 10px;
+	border-radius: var(--fb-radius-full);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.flowbridge-log-badge--success {
+	background: var(--fb-success-bg);
+	color: var(--fb-success);
+}
+
+.flowbridge-log-badge--failed {
+	background: var(--fb-error-bg);
+	color: var(--fb-error);
+}
+
+.flowbridge-log-badge--filtered {
+	background: var(--fb-gray-100);
+	color: var(--fb-gray-500);
+}
+
+.flowbridge-log-event {
+	font-size: 12px;
+	background: var(--fb-gray-50);
+	padding: 2px 8px;
+	border-radius: var(--fb-radius-sm);
+	border: 1px solid var(--fb-border);
+}
+
+.flowbridge-log-entity-key {
+	font-size: 11px;
+	color: var(--fb-primary-dark);
+	background: var(--fb-primary-bg);
+	padding: 1px 6px;
+	border-radius: var(--fb-radius-sm);
+	border: 1px solid var(--fb-primary-lighter);
+}
+
+.flowbridge-log-entity-id {
+	font-size: 11px;
+	color: var(--fb-gray-500);
+}
+
+.flowbridge-http-code {
+	font-weight: 600;
+	font-size: 12px;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.flowbridge-http-code--success {
+	color: var(--fb-success);
+}
+
+.flowbridge-http-code--error {
+	color: var(--fb-error);
+}
+
+.flowbridge-log-na {
+	color: var(--fb-gray-300);
+}
+
+.flowbridge-log-date {
+	font-size: 12px;
+	color: var(--fb-gray-500);
+	white-space: nowrap;
+}
+
+.flowbridge-logs-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid var(--fb-border-light);
+}
+
+.flowbridge-logs-pagination-info {
+	font-size: 13px;
+	color: var(--fb-gray-500);
+}
+
+.flowbridge-logs-pagination-links {
+	display: flex;
+	gap: 6px;
+}
+
+.flowbridge-payload-json {
+	background: var(--fb-gray-50);
+	border: 1px solid var(--fb-border);
+	border-radius: var(--fb-radius-sm);
+	padding: 16px;
+	font-size: 12px;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+	color: var(--fb-gray-700);
+	overflow: auto;
+	max-height: 350px;
+	white-space: pre-wrap;
+	word-break: break-word;
+	margin: 0;
+}
+
+.flowbridge-response-message {
+	font-size: 13px;
+	color: var(--fb-gray-600);
+}
+
+.flowbridge-view-payload-btn {
+	border-radius: var(--fb-radius-sm) !important;
+	font-size: 12px !important;
+}
+
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 782px) {
+	.flowbridge-layout {
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.flowbridge-tabs-nav {
+		flex: none;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	.flowbridge-tab-link {
+		border-radius: var(--fb-radius-sm);
+		border: 1.5px solid var(--fb-border);
+		padding: 8px 14px;
+		font-size: 12.5px;
+	}
+
+	.flowbridge-tab-link:first-child,
+	.flowbridge-tab-link:last-child {
+		border-radius: var(--fb-radius-sm);
+	}
+
+	.flowbridge-tab-link + .flowbridge-tab-link {
+		border-top: 1.5px solid var(--fb-border);
+	}
+
+	.flowbridge-tab-link.active {
+		border: 1.5px solid var(--fb-primary);
+		margin-right: 0;
+		background: var(--fb-primary-bg);
+	}
+
+	.flowbridge-tab-link.active::before {
+		display: none;
+	}
+
+	.flowbridge-card {
+		border-radius: var(--fb-radius-lg);
+		padding: 20px;
+	}
+
+	.flowbridge-modal-card {
+		width: 95%;
+		max-height: 90vh;
+		border-radius: var(--fb-radius-lg);
+	}
+
+	.flowbridge-modal-header {
+		border-radius: var(--fb-radius-lg) var(--fb-radius-lg) 0 0;
+		padding: 16px 20px;
+	}
+
+	.flowbridge-modal-body {
+		padding: 20px;
+	}
+
+	.flowbridge-modal-footer {
+		border-radius: 0 0 var(--fb-radius-lg) var(--fb-radius-lg);
+		padding: 14px 20px;
+		flex-wrap: wrap;
+	}
+
+	.flowbridge-sample-selector {
+		min-width: auto;
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 8px;
+	}
+
+	.flowbridge-entity-header {
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.flowbridge-events-checkboxes {
+		gap: 6px;
+	}
+
+	.flowbridge-events-checkboxes label {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.flowbridge-wrap > h1 {
+		font-size: 20px;
+	}
+
+	.flowbridge-card h2 {
+		font-size: 17px;
+	}
+
+	.flowbridge-entity-name {
+		font-size: 13px;
+	}
+
+	.flowbridge-modal-card {
+		width: 98%;
+	}
+}
