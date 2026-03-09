@@ -1,0 +1,27 @@
+name: Production Deployment
+
+on:
+  push:
+    branches:
+      - main  # Deployment triggers only when you push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Sync to Server
+        uses: Burnett01/rsync-deployments@7.0.1
+        with:
+          # -a: archive, -v: verbose, -z: compress, -r: recursive
+          # --delete: removes files on server that aren't in GitHub
+          switches: -avzr --delete
+          path: ./
+          remote_path: ${{ vars.REMOTE_PATH }}
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Exclude git-related files from being uploaded to your WordPress site
+          exclude: ".git* .github/"
