@@ -677,6 +677,13 @@
 	outline: none;
 }
 
+.flowbridge-modal-footer .button.button-primary.flowbridge-save-config-btn:disabled {
+	background: var(--fb-primary) !important;
+	border-color: var(--fb-primary) !important;
+	color: #ffffff !important;
+	opacity: 0.85;
+}
+
 /* Cancel button */
 .flowbridge-modal-footer .button.flowbridge-modal-cancel {
 	border-radius: var(--fb-radius-sm);
