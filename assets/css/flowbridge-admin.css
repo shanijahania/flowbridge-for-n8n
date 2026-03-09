@@ -1062,6 +1062,28 @@
 	margin-right: 6px;
 }
 
+.flowbridge-btn-spinner {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border: 2px solid rgba(255, 255, 255, 0.4);
+	border-top-color: #ffffff;
+	border-radius: 50%;
+	animation: flowbridge-spin 0.6s linear infinite;
+	vertical-align: middle;
+}
+
+.flowbridge-modal-footer .button.flowbridge-preview-output-btn .flowbridge-btn-spinner,
+.flowbridge-modal-footer .button.flowbridge-send-test-event-btn .flowbridge-btn-spinner {
+	border-color: rgba(79, 70, 229, 0.3);
+	border-top-color: var(--fb-primary);
+}
+
+.flowbridge-btn-loading {
+	opacity: 0.85;
+	pointer-events: none;
+}
+
 @keyframes flowbridge-spin {
 	to {
 		transform: rotate(360deg);

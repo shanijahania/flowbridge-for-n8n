@@ -430,11 +430,13 @@
 
 			var $modal = this.currentModal;
 			var $status = $modal.find( '.flowbridge-modal-status' );
+			var $btn = $modal.find( '.flowbridge-save-config-btn' );
 
 			var config = this.gatherModalConfig();
 			if ( ! config ) return;
 
-			$status.text( flowbridgeAdmin.i18n.saving ).removeClass( 'success error' );
+			$status.text( '' ).removeClass( 'success error' );
+			this.setButtonLoading( $btn, true, flowbridgeAdmin.i18n.saving );
 
 			var self = this;
 
@@ -463,10 +465,12 @@
 						location.reload();
 					}, 800 );
 				} else {
+					self.setButtonLoading( $btn, false );
 					var msg = ( response.data && response.data.message ) ? response.data.message : flowbridgeAdmin.i18n.error;
 					$status.text( msg ).addClass( 'error' );
 				}
 			}).fail( function() {
+				self.setButtonLoading( $btn, false );
 				$status.text( flowbridgeAdmin.i18n.error ).addClass( 'error' );
 			});
 		},
@@ -506,8 +510,9 @@
 				return;
 			}
 
-			$btn.prop( 'disabled', true );
-			$status.text( flowbridgeAdmin.i18n.sendingTestEvent || 'Sending test event...' ).removeClass( 'success error' );
+			var self = this;
+			$status.text( '' ).removeClass( 'success error' );
+			self.setButtonLoading( $btn, true, flowbridgeAdmin.i18n.sendingTestEvent || 'Sending...' );
 
 			$.post( flowbridgeAdmin.ajaxUrl, {
 				action: 'flowbridge_n8n_send_test_event',
@@ -517,7 +522,7 @@
 				sample_id: sampleId,
 				use_live: useLive ? 1 : 0
 			}, function( response ) {
-				$btn.prop( 'disabled', false );
+				self.setButtonLoading( $btn, false );
 				var msg = ( response.data && response.data.message ) ? response.data.message : '';
 				if ( response.success ) {
 					$status.text( msg ).removeClass( 'error' ).addClass( 'success' );
@@ -525,7 +530,7 @@
 					$status.text( msg || flowbridgeAdmin.i18n.error ).removeClass( 'success' ).addClass( 'error' );
 				}
 			}).fail( function() {
-				$btn.prop( 'disabled', false );
+				self.setButtonLoading( $btn, false );
 				$status.text( flowbridgeAdmin.i18n.error ).removeClass( 'success' ).addClass( 'error' );
 			});
 		},
@@ -552,8 +557,9 @@
 			var config = this.gatherModalConfig();
 			if ( ! config ) return;
 
-			$btn.prop( 'disabled', true );
-			$status.text( flowbridgeAdmin.i18n.previewLoading ).removeClass( 'success error' );
+			var self = this;
+			$status.text( '' ).removeClass( 'success error' );
+			self.setButtonLoading( $btn, true, flowbridgeAdmin.i18n.previewLoading );
 
 			$.post( flowbridgeAdmin.ajaxUrl, {
 				action: 'flowbridge_n8n_preview_payload',
@@ -563,7 +569,7 @@
 				sample_id: sampleId,
 				config: JSON.stringify( config )
 			}, function( response ) {
-				$btn.prop( 'disabled', false );
+				self.setButtonLoading( $btn, false );
 				$status.text( '' ).removeClass( 'success error' );
 
 				if ( response.success && response.data.payload ) {
@@ -576,7 +582,7 @@
 					$status.text( msg ).addClass( 'error' );
 				}
 			}).fail( function() {
-				$btn.prop( 'disabled', false );
+				self.setButtonLoading( $btn, false );
 				$status.text( flowbridgeAdmin.i18n.previewError ).removeClass( 'success' ).addClass( 'error' );
 			});
 		},
@@ -639,6 +645,18 @@
 			}
 
 			return null;
+		},
+
+		/* Utility: set button loading state */
+		setButtonLoading: function( $btn, loading, loadingText ) {
+			if ( loading ) {
+				$btn.data( 'original-text', $btn.html() );
+				$btn.html( '<span class="flowbridge-btn-spinner"></span> ' + loadingText );
+				$btn.prop( 'disabled', true ).addClass( 'flowbridge-btn-loading' );
+			} else {
+				$btn.html( $btn.data( 'original-text' ) );
+				$btn.prop( 'disabled', false ).removeClass( 'flowbridge-btn-loading' );
+			}
 		},
 
 		/* Utility: escape HTML */
